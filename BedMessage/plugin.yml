@@ -1,5 +1,4 @@
 name: BedMessage
 main: bedmessage.BedMessage
-version: 1.0
-api-version: 1.13.1
+version: 2.0
 commands:

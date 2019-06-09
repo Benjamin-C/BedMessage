@@ -1,0 +1,16 @@
+# Use ` (grave, with ~ on the upper left of English keyboards) to specify variables
+# Use `{player} to designate the player name
+# use `{rand:X} to designate a random number between 0 and X
+# You can not use the ` symbol except to mark variables
+# Remember to use quotes around values
+
+first-half:
+- "`{player} is sleeping in a bed"
+- "`{player} is taking a nap."
+- "`{player} getting some ZZZs."
+- "`{player} is counting sheep."
+last-half:
+- "Sweet dreams"
+- "Have a nice sleep!"
+- "See you in the morning!"
+- "Don't let the bedbugs bite!"

@@ -10,8 +10,8 @@ import org.bukkit.event.player.PlayerBedEnterEvent.BedEnterResult;
 
 public class Event implements Listener {
 	
-	public String[] firstHalf = {"${player} is sleeping in a bed."};
-	public String[] lastHalf = {"Sweet dreams. ${rand:5}"};
+	public static String[] firstHalf = {"`{player} is sleeping in a bed."};
+	public static String[] lastHalf = {"Sweet dreams. `{rand:5}"};
 	
 	private static final String VARIABLE_IDENTIFIER = "`";
 	
@@ -25,19 +25,19 @@ public class Event implements Listener {
 			n = r.nextInt(lastHalf.length);
 			msg = msg + " " + lastHalf[n];
 			while(msg.contains(VARIABLE_IDENTIFIER)) {
+				//int debug = 0;
 				int start = msg.indexOf(VARIABLE_IDENTIFIER) + 1;
-				int end = start;
+				int end = start - 1;
 				String value = "";
-				if (msg.charAt(start) == '{') {
+				//e.getPlayer().sendMessage("[BedMessage Debug " + debug++ + "] " + start + " to " + end);
+				if (msg.charAt(start++) == '{') {
 					if(msg.contains("}")) {
 						end = msg.indexOf('}');
 						String todo = msg.substring(start, end);
-						e.getPlayer().sendMessage("[BedMessage Debug] " + todo);
 						int argstart = todo.length();
-						if(todo.contains(":")); {
+						if(todo.contains(":")) {
 							argstart = todo.indexOf(':');
 						}
-						e.getPlayer().sendMessage("[BedMessage Debug] " + todo.substring(0, argstart));
 						switch(todo.substring(0, argstart)) {
 						case "player": {
 							value = e.getPlayer().getName(); 
@@ -47,11 +47,9 @@ public class Event implements Listener {
 						} break;
 						default: value = todo; break;
 						}
-						e.getPlayer().sendMessage("[BedMessage Debug] " + value);
 					}
 				}
-				msg = msg.substring(0, start - 1) + value + msg.substring(end + 1);
-				e.getPlayer().sendMessage("[BedMessage Debug] " + msg);
+				msg = msg.substring(0, start - 2) + value + msg.substring(end + 1);
 			}
 			for(Player p : Bukkit.getOnlinePlayers()) {
 				p.sendMessage(msg);
