@@ -1,7 +1,6 @@
 package bedmessage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
